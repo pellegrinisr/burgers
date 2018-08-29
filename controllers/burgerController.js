@@ -7,8 +7,8 @@ router.post('/api/burgers', function(req, res) {
     console.log(req.body.burger_name, req.body.devoured);
     burger.create(
         //create: function(colsArray, valsArray, cb)
-        ['burger_name', 'devoured'],
-        [req.body.burger_name, req.body.devoured],
+        ['burger_name', 'devoured', 'image_url'],
+        [req.body.burger_name, req.body.devoured, req.body.image_url],
         function(data) {
             res.json({id: data.insertId});
         }

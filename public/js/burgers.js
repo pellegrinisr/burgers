@@ -2,12 +2,13 @@ $(document).ready(function() {
     console.log('document ready');
     $('#create-form').on('submit', function(event) {
         event.preventDefault();
-        if (!$('#burger-name').val()) {
-            alert('name cannot be blank');
+        if (!$('#burger-name').val() || !$('#image-url').val()) {
+            alert('name and image url cannot be blank');
         } else {
             var newBurger = {
                 burger_name: $('#burger-name').val().trim(),
-                devoured: false
+                devoured: false,
+                image_url: $('#image-url').val().trim()
             };
             $.ajax('/api/burgers', {
                 type: 'POST',
@@ -17,6 +18,7 @@ $(document).ready(function() {
                 location.reload();
             });
             $('#burger-name').val('');
+            $('#image-url').val('');
         }
     });
 

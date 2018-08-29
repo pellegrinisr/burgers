@@ -1,7 +1,7 @@
 <div class="container">
-    <div class="jumbotron">
-        <h1>Eat the Burger</h1> 
-        <p class="lead">Add a burger of your choice to the menu! Or Devour one that is already listed!</p>
+    <div class="jumbotron bg-dark">
+        <h1 class="text-light">Eat the Burger</h1> 
+        <p class="lead text-light">Add a burger of your choice to the menu! Or Devour one that is already listed!</p>
     </div>
     <div class="row">
         <div class="col-lg-6">
@@ -31,9 +31,13 @@
             <form id="create-form">
                 <div class="form-group">
                     <label for="burger-name">Burger Name:</label>
-                    <input type="text" id="burger-name" name="burger_name">
+                    <input class="form-control" type="text" id="burger-name" name="burger_name" placeholder="Required">
                 </div>
-                <button type="submit">Submit</button>
+                <div class="form-group">
+                    <label for='image-url'>Image Url:</label>
+                    <input class="form-control" type='text' id="image-url" name="image_url" placeholder="Required">
+                </div>  
+                <button class="btn btn-md btn-success submit-btn" type="submit">Submit</button>
             </form>
         </div>      
     </div>
