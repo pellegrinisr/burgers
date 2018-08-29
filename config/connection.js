@@ -4,12 +4,12 @@ var connection = mysql.createConnection({
     port: 3306,
     user: process.env.db_user,
     password: process.env.db_pass,
-    database: 'burger_db'
+    database: 'burgers_db'
 });
 
 connection.connect(function(error) {
     if (error) {
-        console.log('error connecting ', error.stackk);
+        console.log('error connecting ', error.stack);
         return;
     }
     console.log('connected as id ', connection.threadId);
