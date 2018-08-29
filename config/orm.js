@@ -2,7 +2,8 @@ var connection = require('./connection.js');
 
 function printQuestionMarks(num) {
     var array = [];
-    for (var i = 0; i < num.length; i++) {
+    console.log(num);
+    for (var i = 0; i < num; i++) {
         array.push('?');
     }
     return array.toString();
@@ -26,10 +27,11 @@ var orm = {
     //Create
     //INSERT INTO table_name (col1, [col2]...) VALUES (val1, [val2]...)
     create: function(table, colsArray, valsArray, cb) {
-        var sql = "INSERT INTO " + table + "(";
+        var sql = "INSERT INTO " + table + " (";
         sql += colsArray.toString() + ") VALUES (";
+        console.log(printQuestionMarks(valsArray.length));
         sql += printQuestionMarks(valsArray.length) + ")";
-
+        console.log(sql);
         connection.query(sql, valsArray, function(error, data) {
             if (error) throw error;
             cb(data);
@@ -41,7 +43,11 @@ var orm = {
         var sql = 'SELECT * FROM ' + table;
         connection.query(sql, function(error, data){
             if (error) throw error;
-            cb(cb);
+            if (!data) {
+                console.log('no data to return');
+            } else {
+                cb(data);
+            }
         });
     },
 

@@ -1,11 +1,13 @@
 $(document).ready(function() {
+    console.log('document ready');
     $('#create-form').on('submit', function(event) {
         event.preventDefault();
-        if (!$('#burger-name')) {
+        if (!$('#burger-name').val()) {
             alert('name cannot be blank');
         } else {
             var newBurger = {
-                name: $('#burger-name').val().trim()
+                burger_name: $('#burger-name').val().trim(),
+                devoured: false
             };
             $.ajax('/api/burgers', {
                 type: 'POST',
@@ -13,7 +15,8 @@ $(document).ready(function() {
             }).then(function() {
                 console.log('created new burger', newBurger.name);
                 location.reload();
-            })
+            });
+            $('#burger-name').val('');
         }
     });
 
@@ -32,10 +35,11 @@ $(document).ready(function() {
 
     $('.delete-burger').on('click', function() {
         var id = $(this).data('id');
-        $.ajax('/api/cats/' + id, {
+        $.ajax('/api/burgers/' + id, {
             type: 'DELETE'
         }).then(function() {
             console.log('deleted burger #', id);
+            location.reload();
         });
     });
 });

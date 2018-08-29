@@ -4,6 +4,7 @@ var router = express.Router();
 
 //Create
 router.post('/api/burgers', function(req, res) {
+    console.log(req.body.burger_name, req.body.devoured);
     burger.create(
         //create: function(colsArray, valsArray, cb)
         ['burger_name', 'devoured'],
@@ -16,10 +17,12 @@ router.post('/api/burgers', function(req, res) {
 
 //Read
 router.get('/', function(req, res) {
+    console.log('route hit');
     burger.all(function(data) {
         var handlebarsObj = {
             burgers: data 
         };
+        console.log(handlebarsObj);
         res.render('index', handlebarsObj);
     });
 });
